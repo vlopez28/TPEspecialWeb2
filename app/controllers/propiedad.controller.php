@@ -36,11 +36,11 @@ class PropiedadController{
             $banios = $_REQUEST['banios'];
             $patio = $_REQUEST['patio'];
             $tipo_contrato = $_REQUEST['contrato'];
-            $precio_alq = $_REQUEST['precio_alq'];
-            $precio_vta = $_REQUEST['precio_vta'];
+            $moneda = $_REQUEST['moneda'];
+            $precio = $_REQUEST['precio'];
     
             $id = $this->model->insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, $patio, 
-            $tipo_contrato, $precio_alq, $precio_vta);
+            $tipo_contrato, $moneda, $precio);
             header('Location: ' . BASE_URL);
         } else{
             $this->view->mostrarError('Faltan datos obligatorios');

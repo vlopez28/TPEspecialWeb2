@@ -14,7 +14,7 @@ class PropiedadModel{
 
     function detallePropiedad($id){
         $query = $this->db->prepare('SELECT t.tipo, p.id, p.direccion, p.habitaciones, p.banios, p.patio, 
-        p.tipo_contrato, p.precio_alq_pesos, p.precio_vta_usd  
+        p.tipo_contrato, p.moneda, p.precio  
         FROM propiedad p 
         INNER JOIN tipo_propiedad t 
         ON p.tipo_propiedad_id = t.id 
@@ -25,13 +25,13 @@ class PropiedadModel{
     }
 
     function insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, $patio, 
-        $tipo_contrato, $precio_alq, $precio_vta){
+        $tipo_contrato, $moneda, $precio){
       
         $query = $this->db->prepare('INSERT INTO `propiedad` (`id`, `tipo_propiedad_id`, `direccion`, 
-        `habitaciones`, `banios`, `patio`, `tipo_contrato`, `precio_alq_pesos`, `precio_vta_usd`) 
+        `habitaciones`, `banios`, `patio`, `tipo_contrato`, `moneda`, `precio`) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);');
         $query->execute([NULL, $tipo_propiedad, $direccion, $habitaciones, $banios, $patio, $tipo_contrato, 
-        $precio_alq, $precio_vta]);
+        $moneda, $precio]);
         return $this->db->lastInsertId();
     }
 
@@ -43,7 +43,7 @@ class PropiedadModel{
 
     function obtenerPropiedades(){
         $query = $this->db->prepare('SELECT p.id, p.direccion, p.habitaciones, p.banios, p.patio, p.tipo_contrato, 
-        p.precio_alq_pesos, p.precio_vta_usd, t.tipo
+        p.moneda, p.precio, t.tipo
         FROM propiedad p 
         INNER JOIN tipo_propiedad t
         ON p.tipo_propiedad_id = t.id');

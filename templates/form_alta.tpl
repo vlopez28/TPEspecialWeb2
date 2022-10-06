@@ -34,16 +34,14 @@
         </select>
     </div>
     <div class="d-flex">
+        <select class="form-select form-select-sm m-2" aria-label=".form-select-sm example" name="moneda">
+            <option selected>Moneda</option>
+            <option value="$"> <span class="input-group-text">$</span></option>
+            <option value="USD">USD</option>
+        </select>
         <div class="input-group mb-3">
-            <label class="m-2">Precio alquiler</label>
-            <span class="input-group-text">$</span>
-            <input type="text" class="form-control" name="precio_alq">
-            <span class="input-group-text">.00</span>
-        </div>
-        <div class="input-group mb-3">
-            <label class="m-2">Precio venta</label>
-            <span class="input-group-text">USD</span>
-            <input type="text" class="form-control" name="precio_vta">
+            <label class="m-2">Precio</label>
+            <input type="text" class="form-control" name="precio">
             <span class="input-group-text">.00</span>
         </div>
     </div>

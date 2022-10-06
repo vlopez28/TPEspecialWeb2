@@ -7,8 +7,8 @@
                 <th class='table-dark'>Baños</th>
                 <th class='table-dark'>Patio</th>
                 <th class='table-dark'>Tipo-Contrato</th>
-                <th class='table-dark'>$ alquiler</th>
-                <th class='table-dark'>usd venta</th>
+                <th class='table-dark'>Moneda</th>
+                <th class='table-dark'>Precio</th>
                 <th class='table-dark'>Ver</th>
                 <th class='table-dark'>Modificar</th>
                 <th class='table-dark'>Borrar</th>
@@ -22,11 +22,11 @@
                     <td>{$propiedad->banios}</td>
                     <td>{$propiedad->patio}</td>
                     <td>{$propiedad->tipo_contrato}</td>
-                    <td>{$propiedad->precio_alq_pesos}</td>
-                    <td>{$propiedad->precio_vta_usd}</td>
-                    <td><button class='btn btn-info'><a href='verItem/{$propiedad->id}'>Ver</a></button></td>    
-                    <td><button class='btn btn-secondary'><a href='modificar/{$propiedad->id}'>Modificar</a></button></td>    
-                    <td><button class='btn btn-danger'><a href='borrar/{$propiedad->id}'>Borrar</a></button></td>    
+                    <td>{$propiedad->moneda}</td>
+                    <td>{$propiedad->precio}</td>
+                    <td><button class='btn btn-info'><a class="text-black" href='verItem/{$propiedad->id}'>Ver</a></button></td>    
+                    <td><button class='btn btn-secondary'><a class="text-white" href='modificar/{$propiedad->id}'>Modificar</a></button></td>    
+                    <td><button class='btn btn-danger'><a class="text-white" href='borrar/{$propiedad->id}'>Borrar</a></button></td>    
                 </tr>
                 {/foreach}
             </tbody>

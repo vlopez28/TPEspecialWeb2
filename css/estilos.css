@@ -19,6 +19,7 @@ header {
     border: solid 1px #000;
     flex-wrap: wrap;
 }
+
 /* estilos del home dentro del header*/
 
 .home, .contenedor-home, .logo-tel {

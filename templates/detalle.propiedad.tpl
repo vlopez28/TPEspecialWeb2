@@ -9,12 +9,7 @@
         <li class="list-group-item list-group-item-light">Baños: {$detalle->banios}</li>
         <li class="list-group-item list-group-item-light">Patio: {$detalle->patio}</li>
         <li class="list-group-item list-group-item-light">Tipo contrato: {$detalle->tipo_contrato}</li>
-        {if $detalle->tipo_contrato == 'Alquiler'}
-            <li class="list-group-item list-group-item-light">Precio Alquiler $: {$detalle->precio_alq_pesos}</li>
-       
-        {elseif $detalle->tipo_contrato == 'Venta'}
-            <li class="list-group-item list-group-item-light">Precio Venta usd: {$detalle->precio_vta_usd}</li>
-        {/if}
+        <li class="list-group-item list-group-item-light">Precio: {$detalle->moneda} {$detalle->precio}</li>
     {/foreach}
     </ul>
     <a href="listar">Volver</a>
