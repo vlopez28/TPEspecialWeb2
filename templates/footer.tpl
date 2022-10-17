@@ -1,5 +1,5 @@
     <!-- fin contenido principal -->
-</div>
+    </div>
 <footer class="d-flex">
         <section>
            <section class="contacto-footer">

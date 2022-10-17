@@ -59,67 +59,8 @@ header {
     font-size: 17px;
     font-weight: bold;
 }
-/* estilos de la barra de navegacion*/
-#btn-nav img {
-    width: 40px;
-    height: 40px;
-    padding: 10px;
-    margin-right: 5px;
-    background-color: #FF7100;
-}
 
-.nav-principal{
-    width: 100%;
-    background-color: #333;
-    border-top: 2px solid #000;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 56px; 
-    left: 0px;
-    padding-bottom: 15px;
-    display: none;
-}
 
-.mostrar-nav{
-    display: block;
-}
-.menu-nav {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    
-}
-.menu-nav li {
-    text-align: right;
-    margin-top: 10px;
-    
-}
-
-.menu-nav li a, .menu-nav li span, .sub-menu li a {
-    border-bottom: 1px solid #FF7100;
-    font-size: 18px;
-    display: block;
-    color: #fff;
-    text-shadow:  2px 2px 3px #000;
-    padding: 5px 10px;
-    text-decoration: none;
-    font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-nav ul{
-    width: 90%;
-}
-.sub-menu {
-    list-style: none;
-    width: 100%;
-}
-
-.sub-menu li a {
-    text-shadow:  0px 0px 1px #000;
-    font-size: 16px;
-    padding-right: 45px;
-}
 /*estilos form*/
 
 
@@ -165,4 +106,23 @@ footer {
 }
 .contacto-footer a:hover{
     font-size: 16px;
+}
+.container {
+    min-height: 70vh!important;
+}
+.container-link-tipos-propiedad a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+.container-link-nav {
+    display: flex;
+    align-items: center;
+}
+.container-input-patio{
+    margin-left: 10 px;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

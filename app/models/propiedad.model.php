@@ -12,8 +12,18 @@ class PropiedadModel{
         return $db;
     }
 
+    function modificarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, 
+   $patio, $tipo_contrato, $moneda, $precio, $id){
+
+        $query = $this->db->prepare('UPDATE `propiedad` SET `tipo_propiedad_id` = ?, 
+        `direccion` = ?, `habitaciones` = ?, `banios` = ?, `patio` = ?, 
+        `tipo_contrato` = ?, `moneda` = ?, `precio` = ? WHERE `propiedad`.`id` = ?');
+        $query->execute([$tipo_propiedad, $direccion, $habitaciones, $banios, $patio, $tipo_contrato, 
+        $moneda, $precio, $id]);
+    }
+
     function detallePropiedad($id){
-        $query = $this->db->prepare('SELECT t.tipo, p.id, p.direccion, p.habitaciones, p.banios, p.patio, 
+        $query = $this->db->prepare('SELECT t.tipo, t.id as tipo_propiedad_id, p.id, p.direccion, p.habitaciones, p.banios, p.patio, 
         p.tipo_contrato, p.moneda, p.precio  
         FROM propiedad p 
         INNER JOIN tipo_propiedad t 
@@ -21,7 +31,7 @@ class PropiedadModel{
         WHERE p.id=?;');
         $query->execute([$id]);
         $detallesItem = $query->fetchAll(PDO::FETCH_OBJ); 
-        return $detallesItem;
+        return $detallesItem; 
     }
 
     function insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, $patio, 
