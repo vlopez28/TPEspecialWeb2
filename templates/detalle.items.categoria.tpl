@@ -1,5 +1,13 @@
 {include file="templates/header.tpl"}
 <div class="container">
+    
+    {if empty($itemsCategoria[0])}
+        {if $error}
+            <div class="alert alert-danger">
+                {$error}
+            </div>
+        {/if}
+    {else}
     <h3>{$itemsCategoria[0]->tipo}</h3>
     <table class='table table-bordered border-dark mt-3 text-center'>
         <thead>
@@ -29,6 +37,7 @@
             {/foreach}
         </tbody>
     </table>
+    {/if}
     <a href="listarTiposPropiedad">Volver</a>
 </div>
 {include file="templates/footer.tpl"}

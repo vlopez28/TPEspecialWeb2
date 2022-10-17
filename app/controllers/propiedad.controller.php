@@ -45,7 +45,6 @@ class PropiedadController{
         }
     }
 
-    //funcion para modificar item
     function mostrarFormModificacion($id){
         $this->authHelper->estaLogueado();
         $detallesItem = $this->model->detallePropiedad($id);
@@ -54,11 +53,11 @@ class PropiedadController{
     }
 
     function verItemPropiedad($id){
+        $this->authHelper->verificarSesion();
         $detallesItem = $this->model->detallePropiedad($id);
         $this->view->verDetalle($detallesItem);
     }
 
-    //veo todas las propiedades que pedi a la db
     function verPropiedades(){  
         $this->authHelper->verificarSesion();
         $propiedades = $this->model->obtenerPropiedades();

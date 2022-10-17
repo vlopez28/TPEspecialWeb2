@@ -27,6 +27,7 @@ class TipoPropiedadView{
     }
 
     function mostrarItemsCategoria($itemsCategoria){
+       
         $this->smarty->assign('itemsCategoria', $itemsCategoria);
         $this->smarty->display('../templates/detalle.items.categoria.tpl');
     }

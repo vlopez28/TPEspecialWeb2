@@ -13,5 +13,4 @@ class AutenticacionView{
         $this->smarty->display('templates/form_acceso.tpl');
     }
 
-
 }

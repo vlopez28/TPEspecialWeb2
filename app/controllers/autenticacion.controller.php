@@ -17,13 +17,13 @@ class AutenticacionController{
     function mostrarAcceso(){
         $this->view->verFormAcceso();
     }
-    //verifica si los datos del usuario son correctos
+   
     function acceso(){
         if(!empty($_POST['email']) && !empty($_POST['password'])){
             $email = $_POST['email'];
             $password = $_POST['password'];
             $usuario = $this->model->obtenerUsuario($email);
-            //si el usuario existe y las contrasenias coinciden
+            
             if ($usuario && password_verify($password, $usuario->password)){
                 $this->authHelper->cargarSesion($usuario);
                 header('Location: ' . BASE_URL);

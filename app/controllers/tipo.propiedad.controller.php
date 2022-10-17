@@ -14,7 +14,7 @@ class TipoPropiedadController{
         $this->view = new TipoPropiedadView();
         $this->authHelper = new AuthHelper();
     }
-    //ver error cuando borra categoria si items asociados dice que hay una session start
+
     function borrarCategoria($id){
        $this->authHelper->estaLogueado();
         try{
@@ -27,7 +27,7 @@ class TipoPropiedadController{
         }
         
     }
-    //ver mismo error que al borrar
+  
     function insertarCategoria(){
         $this->authHelper->estaLogueado();
         if(!empty($_REQUEST['tipo'])){ 
@@ -61,23 +61,25 @@ class TipoPropiedadController{
     }
 
     function verItemsCategorias($id){
+        $this->authHelper->verificarSesion();
         $itemsCategoria = $this->model->obtenerItemsCategoria($id);
         if(!empty($itemsCategoria)){
             $this->view->mostrarItemsCategoria($itemsCategoria);
         }
         else{
-            $this->view->mostrarError('No hay propiedades de este tipo');
+            $this->listarTiposPropiedad('No hay propiedades de este tipo');
             die();
         } 
     }
 
-    function listarTiposPropiedad(){
+    function listarTiposPropiedad($error = null){
         $this->authHelper->verificarSesion();
         $tiposPropiedad = $this->model->obtenerTiposPropiedad();
-        $this->view->mostrarListaTiposPropiedad($tiposPropiedad, null);        
+        $this->view->mostrarListaTiposPropiedad($tiposPropiedad, $error);        
     }
 
     function verTiposPropiedad(){
+        $this->authHelper->verificarSesion();
         $tiposPropiedad = $this->model->obtenerTiposPropiedad();
         $this->view->mostrarTipoPropiedad($tiposPropiedad, null);
     }
