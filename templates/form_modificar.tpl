@@ -1,6 +1,6 @@
 {include file="templates/header.tpl"}
 
-<form class="mt-5" action='modificarItem/{$detalleForm->id}' method="POST"> 
+<form class="mt-5" action='modificarItem/{$detalleForm->id}' method="POST" enctype="multipart/form-data"> 
     <div class="mb-3 d-flex m-2">
             <label class="form-label m-2">Direccion</label>
             <input type="text" class="form-control" name="direccion" value="{$detalleForm->direccion}" required>
@@ -73,6 +73,9 @@
             <label class="m-2">Precio</label>
             <input type="text" class="form-control" name="precio" value="{$detalleForm->precio}" required>
             <span class="input-group-text">.00</span>
+        </div>
+        <div class="input-group mb-3">
+            <input type="file" name="imagen" class="form-control">
         </div>
     </div>
     <button type="submit" class="btn btn-dark m-3">Modificar</button>

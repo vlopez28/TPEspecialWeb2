@@ -23,8 +23,8 @@ class PropiedadController{
 
     function modificarPropiedad($id){
         $this->authHelper->estaLogueado();
-        if(!empty($_REQUEST['tipo_propiedad']) && !empty($_REQUEST['direccion']) && !empty($_REQUEST['habitaciones']) && !empty($_REQUEST['banios']) 
-        &&isset($_REQUEST['patio']) && !empty($_REQUEST['contrato'])){ 
+        if(!empty($_REQUEST['tipo_propiedad']) && !empty($_REQUEST['direccion']) && !empty($_REQUEST['habitaciones']) 
+        && !empty($_REQUEST['banios']) &&isset($_REQUEST['patio']) && !empty($_REQUEST['contrato'])){ 
 
             $tipo_propiedad = $_REQUEST['tipo_propiedad'];  
             $direccion = $_REQUEST['direccion'];
@@ -35,8 +35,20 @@ class PropiedadController{
             $moneda = $_REQUEST['moneda'];
             $precio = $_REQUEST['precio'];
             
-            $id_propiedad = $this->model->modificarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, 
-            $patio, $tipo_contrato, $moneda, $precio, $id);
+            if($_FILES['imagen']['type'] == "image/jpg" || 
+               $_FILES['imagen']['type'] == "image/jpeg"|| 
+               $_FILES['imagen']['type'] == "image/png"){
+
+                $extension = explode('.', $_FILES['imagen']['name']);
+
+
+                $this->model->modificarPropiedad($id, $tipo_propiedad, $direccion, $habitaciones, $banios, 
+                $patio, $tipo_contrato, $moneda, $precio, end($extension), $_FILES['imagen']['tmp_name']);
+            } 
+            else{
+                $this->model->modificarPropiedad($id, $tipo_propiedad, $direccion, $habitaciones, $banios, 
+                $patio, $tipo_contrato, $moneda, $precio);
+            } 
             header('Location: ' . BASE_URL);
            
         } else{
@@ -68,11 +80,11 @@ class PropiedadController{
         $tiposPropiedad = $this->tipoPropiedadModel->obtenerTiposPropiedad();
         $this->tipoPropiedadView->mostrarTipoPropiedad($tiposPropiedad, null);
     }
-
+  
     function agregarPropiedad(){
         $this->authHelper->estaLogueado();
         if(!empty($_REQUEST['tipo_propiedad']) && !empty($_REQUEST['direccion']) && !empty($_REQUEST['habitaciones']) && !empty($_REQUEST['banios']) 
-        && isset($_REQUEST['patio'])&& !empty($_REQUEST['contrato']) && !empty($_REQUEST['moneda'])
+        && isset($_REQUEST['patio']) && !empty($_REQUEST['contrato']) && !empty($_REQUEST['moneda'])
         && !empty($_REQUEST['precio'])){ 
 
             $tipo_propiedad = $_REQUEST['tipo_propiedad'];  
@@ -84,8 +96,21 @@ class PropiedadController{
             $moneda = $_REQUEST['moneda'];
             $precio = $_REQUEST['precio'];
             
-            $id = $this->model->insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, $patio, 
-            $tipo_contrato, $moneda, $precio);
+            if($_FILES['imagen']['type'] == "image/jpg" || 
+               $_FILES['imagen']['type'] == "image/jpeg"|| 
+               $_FILES['imagen']['type'] == "image/png"){
+                //var_dump($_FILES);
+                $extension = explode('.', $_FILES['imagen']['name']);
+               // echo"extension:";
+               // var_dump($extension);
+                $this->model->insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, 
+                $patio, $tipo_contrato, $moneda, $precio, end($extension), $_FILES['imagen']['tmp_name']);
+            } 
+            else{
+                $this->model->insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, 
+                $patio, $tipo_contrato, $moneda, $precio);
+            } 
+            
             header('Location: ' . BASE_URL);
            
         } else{

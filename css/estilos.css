@@ -126,3 +126,18 @@ footer {
     flex-direction: row;
     justify-content: space-between;
 }
+.img-fluid {
+    width: 95%;
+}
+.container-detalle-propiedad{
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content:space-evenly;
+}
+.imagen-detalle-propiedad{
+    width: 75%;
+}
+.columna-imagen {
+    width: 100px;
+}

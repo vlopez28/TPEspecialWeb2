@@ -9,6 +9,7 @@
                 <th class='table-dark'>Tipo-Contrato</th>
                 <th class='table-dark'>Moneda</th>
                 <th class='table-dark'>Precio</th>
+                <th class='table-dark columna-imagen'>Imagen</th>
                 <th class='table-dark'>Ver</th>
                 {if isset($smarty.session.IS_LOGGED)}
                     <th class='table-dark'>Modificar</th>
@@ -30,6 +31,11 @@
                     <td>{$propiedad->tipo_contrato}</td>
                     <td>{$propiedad->moneda}</td>
                     <td>{$propiedad->precio}</td>
+                    {if !empty($propiedad->imagen)}
+                        <td><img src="{$propiedad->imagen}" id="img-tabla-home" class="img-fluid" ></td>
+                    {else}
+                        <td>Imagen no disponible</td>
+                    {/if}
                     <td><button class='btn btn-white'>
                         <a class="text-black" href='verItem/{$propiedad->id}'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">

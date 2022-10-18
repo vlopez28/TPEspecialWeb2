@@ -12,19 +12,25 @@ class PropiedadModel{
         return $db;
     }
 
-    function modificarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, 
-   $patio, $tipo_contrato, $moneda, $precio, $id){
+    function modificarPropiedad($id, $tipo_propiedad, $direccion, $habitaciones, $banios, 
+    $patio, $tipo_contrato, $moneda, $precio, $extension = null, $imagen = null){
+
+        $pathImagen = null;
+        if($imagen){
+            $pathImagen = $this->subirImagen($imagen, $extension);
+        }
 
         $query = $this->db->prepare('UPDATE `propiedad` SET `tipo_propiedad_id` = ?, 
         `direccion` = ?, `habitaciones` = ?, `banios` = ?, `patio` = ?, 
-        `tipo_contrato` = ?, `moneda` = ?, `precio` = ? WHERE `propiedad`.`id` = ?');
+        `tipo_contrato` = ?, `moneda` = ?, `precio` = ?, `imagen` = ? WHERE `propiedad`.`id` = ?');
         $query->execute([$tipo_propiedad, $direccion, $habitaciones, $banios, $patio, $tipo_contrato, 
-        $moneda, $precio, $id]);
+        $moneda, $precio, $pathImagen, $id]);
+
     }
 
     function detallePropiedad($id){
         $query = $this->db->prepare('SELECT t.tipo, t.id as tipo_propiedad_id, p.id, p.direccion, p.habitaciones, p.banios, p.patio, 
-        p.tipo_contrato, p.moneda, p.precio  
+        p.tipo_contrato, p.moneda, p.precio, p.imagen  
         FROM propiedad p 
         INNER JOIN tipo_propiedad t 
         ON p.tipo_propiedad_id = t.id 
@@ -35,14 +41,25 @@ class PropiedadModel{
     }
 
     function insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, $patio, 
-        $tipo_contrato, $moneda, $precio){
-      
+        $tipo_contrato, $moneda, $precio, $extension = null, $imagen = null){
+       // echo " extension que llega";
+           // var_dump($extension);
+        $pathImagen = null;
+        if($imagen){
+            $pathImagen = $this->subirImagen($imagen, $extension);
+        }
+        
         $query = $this->db->prepare('INSERT INTO `propiedad` (`id`, `tipo_propiedad_id`, `direccion`, 
-        `habitaciones`, `banios`, `patio`, `tipo_contrato`, `moneda`, `precio`) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);');
+        `habitaciones`, `banios`, `patio`, `tipo_contrato`, `moneda`, `precio`, `imagen`) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);');
         $query->execute([NULL, $tipo_propiedad, $direccion, $habitaciones, $banios, $patio, $tipo_contrato, 
-        $moneda, $precio]);
+        $moneda, $precio, $pathImagen]);
         return $this->db->lastInsertId();
+    }
+    private function subirImagen($imagen, $extension){
+        $target = 'images/casas/' . uniqid() . '.' . $extension;
+        move_uploaded_file($imagen, $target);
+        return $target;
     }
 
     function eliminarPropiedad($id){
@@ -53,7 +70,7 @@ class PropiedadModel{
 
     function obtenerPropiedades(){
         $query = $this->db->prepare('SELECT p.id, p.direccion, p.habitaciones, p.banios, p.patio, p.tipo_contrato, 
-        p.moneda, p.precio, t.tipo
+        p.moneda, p.precio, p.imagen, t.tipo
         FROM propiedad p 
         INNER JOIN tipo_propiedad t
         ON p.tipo_propiedad_id = t.id');
