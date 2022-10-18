@@ -42,8 +42,6 @@ class PropiedadModel{
 
     function insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, $patio, 
         $tipo_contrato, $moneda, $precio, $extension = null, $imagen = null){
-       // echo " extension que llega";
-           // var_dump($extension);
         $pathImagen = null;
         if($imagen){
             $pathImagen = $this->subirImagen($imagen, $extension);

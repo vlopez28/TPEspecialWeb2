@@ -32,7 +32,7 @@ class TipoPropiedadController{
         $this->authHelper->estaLogueado();
         if(!empty($_REQUEST['tipo'])){ 
             $tipo_propiedad = $_REQUEST['tipo'];  
-            $id_tipo_propiedad = $this->model->insertarTipoPropiedad($tipo_propiedad);
+            $this->model->insertarTipoPropiedad($tipo_propiedad);
             $this->listarTiposPropiedad();   
         } else{
             $tiposPropiedad = $this->model->obtenerTiposPropiedad();
@@ -49,9 +49,8 @@ class TipoPropiedadController{
     function modificarCategoria($id){
         $this->authHelper->estaLogueado();
         if(!empty($_REQUEST['tipo'])){ 
-            $tipo_propiedad = $_REQUEST['tipo'];  
-            
-            $id_tipo_propiedad = $this->model->modificarTipoPropiedad($tipo_propiedad, $id);
+            $tipo_propiedad = $_REQUEST['tipo'];    
+            $this->model->modificarTipoPropiedad($tipo_propiedad, $id);
             $this->listarTiposPropiedad();
             
         } else{

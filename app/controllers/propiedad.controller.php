@@ -99,10 +99,7 @@ class PropiedadController{
             if($_FILES['imagen']['type'] == "image/jpg" || 
                $_FILES['imagen']['type'] == "image/jpeg"|| 
                $_FILES['imagen']['type'] == "image/png"){
-                //var_dump($_FILES);
                 $extension = explode('.', $_FILES['imagen']['name']);
-               // echo"extension:";
-               // var_dump($extension);
                 $this->model->insertarPropiedad($tipo_propiedad, $direccion, $habitaciones, $banios, 
                 $patio, $tipo_contrato, $moneda, $precio, end($extension), $_FILES['imagen']['tmp_name']);
             } 
